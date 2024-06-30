@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { sequelize, testDbConnection } = require("./config/db");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
@@ -11,13 +13,28 @@ const paymentRoutes = require("./routes/paymentRoutes");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
 app.use(bodyParser.json());
+
+const SESSION_SECRET = process.env.SESSION_SECRET || "default_secret_key";
+
 app.use(
   session({
-    secret: "your_secret_key",
+    secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: new SequelizeStore({
+      db: sequelize,
+    }),
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    },
   })
 );
 
@@ -26,8 +43,12 @@ app.use("/profile", profileRoutes);
 app.use("/subscriptions", subscriptionRoutes);
 app.use("/payments", paymentRoutes);
 
-const PORT = process.env.PORT || 5000;
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal server error' });
+});
 
+const PORT = process.env.PORT || 5000;
 testDbConnection();
 
 sequelize.sync().then(() => {

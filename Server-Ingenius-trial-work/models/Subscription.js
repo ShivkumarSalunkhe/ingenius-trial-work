@@ -1,7 +1,5 @@
-// Subscription.js (and other model files)
 const { DataTypes } = require('sequelize');
-const {sequelize} = require('../config/db'); // Adjust the path relative to User.js
-
+const {sequelize} = require('../config/db'); 
 
 const Subscription = sequelize.define('Subscription', {
   userId: {
@@ -18,7 +16,8 @@ const Subscription = sequelize.define('Subscription', {
   },
   endDate: {
     type: DataTypes.DATE,
-    allowNull: false,
+    defaultValue: null,
+    allowNull: true,
   },
   status: {
     type: DataTypes.STRING,

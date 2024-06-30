@@ -1,6 +1,5 @@
-// Payment.js
 const { DataTypes } = require('sequelize');
-const {sequelize} = require('../config/db'); // adjust path as necessary
+const {sequelize} = require('../config/db');
 
 const Payment = sequelize.define('Payment', {
   subscriptionId: {

@@ -1,6 +1,5 @@
-// models/plan.js
 const { DataTypes } = require('sequelize');
-const {sequelize} = require('../config/db'); // Adjust path as necessary
+const {sequelize} = require('../config/db');
 
 const Plan = sequelize.define('Plan', {
   name: {
@@ -14,6 +13,10 @@ const Plan = sequelize.define('Plan', {
   price: {
     type: DataTypes.DECIMAL,
     allowNull: false,
+  },
+  endDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
   },
 });
 
