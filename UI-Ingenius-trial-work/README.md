@@ -1,6 +1,25 @@
-# Getting Started with Create React App
+# Gym Subscription App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a Gym Subscription application built with React. Users can view subscription plans, subscribe to plans, update and cancel subscriptions, create and edit their profiles, and log in and log out of their accounts. The app provides real-time success and error messages using React Hot Toast and uses MUI for components and Redux for state management.
+
+## Features
+
+- **View Subscription Plans**: Users can browse various gym subscription plans available.
+- **Subscribe to Plans**: Users can subscribe to any gym plan.
+- **Update Subscription**: Users can update their current subscription plan.
+- **Cancel Subscription**: Users can cancel their subscription at any time.
+- **User Profile Management**: Users can create, edit, and update their profiles.
+- **Authentication**: Users can log in and log out of their accounts.
+- **Real-time Notifications**: Success and error messages are displayed using React Hot Toast.
+- **Material-UI Components**: The app utilizes Material-UI for a consistent and modern UI.
+- **State Management with Redux**: The app uses Redux for efficient state management.
+
+## Installation
+
+To install and set up the application, follow these steps:
+
+Clone Repo
+git clone https://github.com/ShivkumarSalunkhe/ingenius-trial-work.git
 
 ## Available Scripts
 
@@ -8,11 +27,6 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### `npm test`
 
